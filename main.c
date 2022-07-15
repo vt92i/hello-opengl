@@ -22,10 +22,15 @@ int main(void) {
     printf("OpenGL version: %s\n", glGetString(GL_VERSION));
     printf("OpenGL shading language version: %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
 
+    glViewport(0, 0, screenWidth, screenHeight);
+
     while (!glfwWindowShouldClose(window)) {
         glfwPollEvents();
 
-        glViewport(0, 0, screenWidth, screenHeight);
+        if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS) {
+            glfwSetWindowShouldClose(window, GL_TRUE);
+        }
+
         glClearColor(0.0f, 0.8f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
